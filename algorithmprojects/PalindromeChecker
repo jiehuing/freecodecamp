@@ -1,0 +1,56 @@
+
+//   Return true if the given string is a palindrome. Otherwise, return false.
+
+// A palindrome is a word or sentence that's spelled the same way both forward and backward, ignoring punctuation, case, and spacing.
+
+// Note
+// You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols) and turn everything into the same case (lower or upper case) in order to check for palindromes.
+
+// We'll pass strings with varying formats, such as "racecar", "RaceCar", and "race CAR" among others.
+
+// We'll also pass strings with special symbols, such as "2A3*3a2", "2A3 3a2", and "2_A3*3#A2".
+
+function palindrome(str) {
+  var str1 = str;
+  let regexTest = /[a-z0-9]/i;
+  while (str1.length>1)
+  {
+    let firstChar = str1[0];
+    while (!(regexTest.test(firstChar)))
+    {
+      str1 = str1.substring(1,str1.length);
+      firstChar = str1[0];
+    }
+    console.log(firstChar);
+    let lastChar = str1[str1.length-1];
+    while (!(regexTest.test(lastChar)))
+    {
+      str1 = str1.substring(0,str1.length-1);
+      lastChar = str1[str1.length-1];
+    }
+    console.log(lastChar)
+    if (firstChar == undefined||lastChar==undefined)
+    {
+      break;
+    }
+    if (isNaN(firstChar) && isNaN(lastChar))
+    {
+      if (firstChar.toLowerCase()!=lastChar.toLowerCase())
+      {
+        return false;
+      }
+    }
+    else
+    {
+      if (firstChar!=lastChar)
+    {
+      return false;
+    }
+    }
+    str1 = str1.substring(1,str1.length-1);
+  }
+  return true;
+}
+
+
+console.log(palindrome("a!!2!!!!@#$aeyea!!!!2!a"));

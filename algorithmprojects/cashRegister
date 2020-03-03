@@ -1,0 +1,103 @@
+function checkCashRegister(price, cash, cid) {
+  var output = {};
+  var change = cash - price;
+  var returns = [];
+  var currencyDict = 
+  {
+    "PENNY":0.01,
+    "NICKEL":0.05,
+    "DIME":0.1,
+    "QUARTER":0.25,
+    "ONE":1,
+    "FIVE":5,
+    "TEN":10,
+    "TWENTY":20,
+    "ONE HUNDRED":100
+  }
+  for (var i = cid.length-1;i>=0;i--)
+  {
+    var currency = cid[i][0];
+    var value = currencyDict[currency];
+    var amount = cid[i][1];
+    //console.log(currency+" : "+value+" : "+amount);
+    if (value>change)
+    {
+      continue;
+    }
+    else
+    {
+      returns.push([currency,0]);
+      while (amount>=value&&change>=value)
+      {
+        //console.log("amount:"+amount+"   change:"+change)
+        amount -= value;
+        amount = Math.round(amount * 100) / 100;
+        change -= value;
+        change = Math.round(change * 100) / 100;
+        returns[returns.length-1][1]+=value;        
+      }
+      //console.log(returns[0][1])
+      returns[returns.length-1][1]=Math.round(returns[returns.length-1][1] * 100) / 100;
+      //console.log(returns[0][1]);
+    }
+  }
+  change = cash-price;
+  var cidTotal = 0;
+  for (var j in cid)
+  {
+    cidTotal+=cid[j][1];
+  }
+  cidTotal = Math.round(cidTotal * 100) / 100;
+  var returnsTotal=0;
+  for (var k in returns)
+  {
+    returnsTotal+=returns[k][1];
+  }
+  returnsTotal = Math.round(returnsTotal * 100) / 100;
+  console.log("cidTotal: "+cidTotal+"   returnsTotal:"+returnsTotal+"    change:"+change);
+  //console.log(change);
+  if (cidTotal<change)
+  {
+    //console.log(total);
+    //console.log(change);
+    output["status"]="INSUFFICIENT_FUNDS";
+    output["change"]=[];
+    return output;
+  }
+  if (cidTotal == returnsTotal)
+  {
+    output["status"]="CLOSED";
+    output["change"] = cid;
+    return output;
+  }
+  if(returnsTotal<change)
+  {
+      output["status"]="INSUFFICIENT_FUNDS";
+    output["change"]=[];
+    return output;
+  }
+  output["status"]="OPEN";
+  output["change"]=returns;
+  return output;
+}
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01],
+// ["NICKEL", 2.05],
+// ["DIME", 3.1],
+// ["QUARTER", 4.25],
+// ["ONE", 90],
+// ["FIVE", 55],
+// ["TEN", 20],
+// ["TWENTY", 60],
+// ["ONE HUNDRED", 100]]
+
+//console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+
+//console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+
+//console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+
+//console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
