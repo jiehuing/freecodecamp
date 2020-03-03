@@ -1,0 +1,21 @@
+function translatePigLatin(str) {
+  let newStr=str;
+  let vowels = ["a","e","i","o","u"];
+  let i =0;
+  if (vowels.includes(str[0]))
+  {
+    return str+"way"
+  }
+  else
+  {
+      while(vowels.includes(str[i])==false)
+      {
+        newStr = newStr.replace(str[i],"")+str[i];
+        console.log(newStr);
+        i++;
+      }
+    }
+  return newStr+"ay";
+}
+
+console.log(translatePigLatin("rhythm"));

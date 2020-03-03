@@ -1,0 +1,24 @@
+function destroyer(arr) {
+  // Remove all the values
+  var newArr = [];
+  for (let j=0;j<arr.length;j++)
+    {
+    var destroyed = false;
+    for (var i = 1; i < arguments.length; i++) 
+    {
+      var destroyer = arguments[i];
+      console.log(destroyer);
+      if (arr[j]==destroyer)
+      {
+        destroyed = true;
+      }  
+    }
+    if (!(destroyed))
+    {
+      newArr.push(arr[j])
+    }
+  }
+  return newArr;
+}
+
+console.log(destroyer([1,0,123,11, 2, 3, 1, 2, 3],2,3));

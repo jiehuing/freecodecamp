@@ -1,0 +1,11 @@
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+  for (var i in arr)
+  {
+    var distance = arr[i].avgAlt+earthRadius;
+    var period = Math.round(2*Math.PI*Math.sqrt(Math.pow(distance,3)/GM))
+    arr[i]={name:arr[i].name,orbitalPeriod:period}
+  }
+  return arr;
+}

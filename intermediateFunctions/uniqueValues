@@ -1,0 +1,28 @@
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  for (var i in arr1)
+  {
+    if (arr2.includes(arr1[i]))
+    {
+      //console.log(arr1[i])
+    }
+    else
+    {
+      newArr.push(arr1[i])
+    }
+  }
+    for (var i in arr2)
+  {
+    if (arr1.includes(arr2[i]))
+    {
+      //console.log(arr2[i])
+    }
+    else
+    {
+      newArr.push(arr2[i])
+    }
+  }
+  return newArr;
+}
+
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));

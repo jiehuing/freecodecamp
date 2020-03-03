@@ -1,0 +1,27 @@
+function sumPrimes(num) {
+  var sum = 0;
+  var primeDict = [];
+  for (var testNum = 2; testNum<=num; testNum++)
+  {
+    //console.log(testNum)
+    var isPrime = true;
+    for (var primeIndex in primeDict)
+    {
+      //console.log(prime);
+      if (testNum%primeDict[primeIndex]==0)
+      {
+        isPrime =false;
+      }
+    }
+    if(isPrime)
+    {
+      //console.log(testNum);
+      primeDict.push(testNum);
+      //console.log(primeDict);
+      sum+=testNum;
+    }
+  }
+  return sum;
+}
+
+console.log(sumPrimes(10));
