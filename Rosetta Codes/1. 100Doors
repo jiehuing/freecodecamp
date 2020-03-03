@@ -1,0 +1,37 @@
+function getFinalOpenedDoors(numDoors) {
+  var dict = {};
+  var output = [];
+  for (var i =1; i<=numDoors; i++)
+  {
+    dict[i]=0;
+  }
+  for (var j=1; j<=numDoors; j++)
+  {
+    for (var i=1; i<=numDoors; i++)
+    {
+      //console.log("j:"+j+" i:"+i)
+      //console.log(i%j==0)
+      if(i%j==0)
+      {
+        dict[i]+=1;
+      }
+      else
+      {
+        continue;
+      }
+    }
+  }
+  for (var i=1; i<=numDoors; i++)
+  {
+    console.log(i+":"+dict[i])
+    if (dict[i]%2==1)
+    {
+      console.log(i+" true");
+      output.push(i);
+    }
+  }
+  return output;
+}
+
+console.log(getFinalOpenedDoors(100));
+
