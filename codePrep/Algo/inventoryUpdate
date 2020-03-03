@@ -1,0 +1,48 @@
+function updateInventory(arr1, arr2) {
+    // All inventory must be accounted for or you're fired!
+    var dict = {};
+    for (var i in arr1)
+    {
+        dict[arr1[i][1]]=arr1[i][0]
+    }
+    for (var j in arr2)
+    {
+        if (dict.hasOwnProperty(arr2[j][1]))
+        {
+            dict[arr2[j][1]]+=arr2[j][0];
+        }
+        else
+        {
+            dict[arr2[j][1]]=arr2[j][0];
+        }
+    }
+    var sortArr = [];
+    for (var k in dict)
+    {
+        sortArr.push(k);
+    }
+    sortArr.sort();
+    var newArr = [];
+    for (var l in sortArr)
+    {
+        console.log(sortArr[l]);
+        newArr.push([dict[sortArr[l]],sortArr[l]]);
+    }
+    return newArr;
+}
+// Example inventory lists
+var curInv = [
+    [21, "Bowling Ball"],
+    [2, "Dirty Sock"],
+    [1, "Hair Pin"],
+    [5, "Microphone"]
+];
+
+var newInv = [
+    [2, "Hair Pin"],
+    [3, "Half-Eaten Apple"],
+    [67, "Bowling Ball"],
+    [7, "Toothpaste"]
+];
+
+console.log(updateInventory(curInv, newInv));

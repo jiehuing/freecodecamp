@@ -1,0 +1,43 @@
+function pairwise(arr, arg) {
+  var indexList = [];
+  var sum = 0;
+  var matchFound = false;
+  for (var i in arr)
+  {
+    matchFound = false;
+    if (!(indexList.includes(i)))
+    {
+      if (arr[i]<arg)
+      {
+        console.log("Finding match for i = "+i+"...");
+        indexList.push(i);
+        for(var j in arr)
+        {
+          if (!(indexList.includes(j))&&arr[i]+arr[j]==arg)
+          {
+            console.log("Match found for j = "+j)
+            indexList.push(j);
+            matchFound=true;
+            break;
+          }
+          else
+          {
+          }
+        }
+        if (!(matchFound))
+        {
+          indexList.pop();
+        }
+      }
+    }
+  }
+  console.log("Summing all indexes...");
+  for (var k in indexList)
+  {
+    console.log(indexList[k]);
+    sum+=parseInt(indexList[k]);
+  }
+  return sum;
+}
+
+console.log(pairwise([1,4,2,3,0,5], 7));
