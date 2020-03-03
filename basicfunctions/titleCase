@@ -1,0 +1,23 @@
+function titleCase(str) {
+  let isFirstLetter=true;
+  let newStr="";
+  for (let i = 0; i<str.length;i++)
+  {
+    if (isFirstLetter)
+    {
+      newStr+=str[i].toUpperCase();
+      isFirstLetter = false;
+    }
+    else
+    {
+      newStr+=str[i].toLowerCase();
+    }
+    if (str[i]==" ")
+    {
+      isFirstLetter=true;
+    }
+  }
+  return newStr;
+}
+
+console.log(titleCase("I'm a little tea pot"));

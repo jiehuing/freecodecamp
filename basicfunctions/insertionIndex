@@ -1,0 +1,14 @@
+function getIndexToIns(arr, num) {
+  // Find my place in this sorted array.
+  let count = 0;
+  for (let i in arr)
+  {
+    if (num>arr[i])
+    {
+      count+=1;
+    }
+  }
+  return count;
+}
+
+console.log(getIndexToIns([40, 60], 50));
