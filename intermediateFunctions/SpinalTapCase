@@ -1,0 +1,32 @@
+Intermediate Algorithm Scripting: Spinal Tap Case
+Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+
+
+
+function spinalCase(str) {
+  var newStr = str
+    for (var x in str)
+  {
+    if (str[x]==str[x].toUpperCase() && str[x]!=" ")
+    {
+      console.log(str[x])
+      newStr=newStr.replace(str[x],"-"+str[x].toLowerCase());
+    }
+  }
+  while (newStr.includes("--")||newStr.includes(" -")||newStr.includes("_-"))
+  {
+  newStr=newStr.replace(" -","-")
+  newStr=newStr.replace("--","-")
+  newStr=newStr.replace("_-","-")
+  }
+  newStr=newStr.replace(" ","-")
+  if (newStr[0]=="-")
+  {
+    newStr=newStr.substring(1,newStr.length)
+  }
+  return newStr
+}
+
+console.log(spinalCase('The_Andy_Griffith_Show'));
+console.log(spinalCase('Teletubbies say Eh-oh'));
+console.log(spinalCase('This Is Spinal Tap'));
